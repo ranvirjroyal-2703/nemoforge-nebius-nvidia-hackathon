@@ -1,25 +1,36 @@
-# NemoForge – Autonomous Coding Agent
+# CodeEvolve – Autonomous Coding Agent with Real Execution Feedback
 
-Autonomous multi-step coding agent powered by NVIDIA Nemotron models on Nebius Token Factory.
+**Nebius x NVIDIA Global AI Hackathon – Coding and Agentic Engineering Track**
 
-Built for the Nebius x NVIDIA Global AI Hackathon (Coding and Agentic Engineering Track).
+CodeEvolve is an autonomous coding agent that plans, writes, **actually executes**, and iteratively improves code using real runtime feedback.
+
+Unlike simple code generators, it runs the generated code, captures stdout/stderr/exceptions, and feeds those real results back into the next reasoning step.
+
+## Key Features
+- Real code execution via Python subprocess (not simulated)
+- Multi-step agent loop: Plan → Generate → Execute → Critique with results → Iterate
+- Model routing: Nemotron Ultra for planning & generation, Nemotron Nano for fast critique
+- Powered by Nebius Token Factory + NVIDIA open-source models
 
 ## Setup
-1. Get Nebius Token Factory API key (use code NEBIUS-DEVPOST-GLOBAL26 for free credits on the hackathon resources page).
-2. Create a `.env` file or export: `export NEBIUS_API_KEY=your_key_here`
+1. Claim free Nebius credits on the hackathon resources page (code: `NEBIUS-DEVPOST-GLOBAL26`)
+2. `export NEBIUS_API_KEY=your_key`
 3. `pip install -r requirements.txt`
-4. `python nemoforge.py`
+4. `python codeevolve.py`
 
 ## How it works
-- Plans the solution with Nemotron Ultra (deep reasoning)
-- Generates code with Nemotron Ultra
-- Critiques and iterates with Nemotron Nano (faster model)
-- Self-improvement loop for higher quality code
+1. Plans the solution with Nemotron Ultra
+2. Generates complete runnable code
+3. Executes it in a real Python process and captures output/errors
+4. Feeds the actual execution results to Nemotron Nano for critique and improvement
+5. Repeats until the code passes or max iterations reached
 
 ## Built With
 - Nebius Token Factory
-- NVIDIA Nemotron (Ultra + Nano)
-- Python + OpenAI-compatible client
+- NVIDIA Nemotron Ultra & Nano
+- Python subprocess for real execution
 
-## License
-MIT
+## Why this is different
+It closes the loop with **actual runtime evidence**, not just LLM self-critique. This is the core of agentic engineering.
+
+MIT License
